@@ -24,7 +24,11 @@ const update = (data) => {
         }
     });
 }
+
+const remove = samId => {
+    return httpClient.delete(`/api/v1/children/${samId}`);
+}
 //makes http call to rest api endpoint in springboot 
 
-export default {getAll, create, get,update};
+export default {getAll, create, get,update, remove};
  

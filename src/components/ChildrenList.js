@@ -8,6 +8,12 @@ const ChildrenList = () => {
   const [children, setChildren] =  useState([]);
 
   useEffect(() =>{
+    init();
+   
+  }, [])
+
+
+  const init = () => {
     childService.getAll()
     .then(response => {
       console.log('Printing children data',response.data);
@@ -16,8 +22,17 @@ const ChildrenList = () => {
     .catch(error => {
       console.log('Something went wrong',error);
     })
-   
-  }, [])
+  }
+
+  const handleDelete = id => {
+    childService.remove(id)
+      .then(response =>{
+        console.log('Child deleted succesfully', response.data);
+        init();
+      }).catch(error => {
+        console.log('Something went werong', error);
+      })
+  }
 
   return ( 
       <div className="container">
@@ -74,6 +89,7 @@ const ChildrenList = () => {
                 <td>{child.otherSymptoms}</td>
                 <td>
                   <Link className="btn btn-info" to={`/children/edit/${child.samId}`}>Update</ Link>
+                  <button className="btn btn-danger mu-2 " onClick={(e)=>(handleDelete(child.samId))}>Delete</button>
                 </td>
               </tr>
             ))

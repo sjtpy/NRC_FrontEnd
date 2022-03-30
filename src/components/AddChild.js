@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import childService from "../services/child.service";
 import { useNavigate,useParams } from "react-router";
 import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const AddChild = () => {
     const [uhid, setUhid]=useState('');
     const [rchId, setRchid]=useState('');
@@ -99,7 +101,7 @@ const AddChild = () => {
                     <input type="text" className="form-control col-4" id="uhid" value={uhid} onChange={(e)=>setUhid(e.target.value)} placeholder="Enter UhId"/>
                 </div>
                
-                <div className="form-group">
+                <div className="form-group" padding-top-2>
                     <input type="text" className="form-control col-4" id="rchId" value={rchId} onChange={(e)=>setRchid(e.target.value)} placeholder="Enter RchId"/>
                 </div>
 
