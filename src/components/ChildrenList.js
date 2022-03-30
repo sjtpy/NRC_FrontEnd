@@ -46,6 +46,7 @@ const ChildrenList = () => {
             <td>MUAC</td>
             <td>Growth Status</td>
             <td>Other symptoms</td>
+            <td>Actions</td>
 
           </tr>
             </thead>
@@ -71,6 +72,9 @@ const ChildrenList = () => {
                 <td>{child.muac}</td>
                 <td>{child.growthStatus}</td>
                 <td>{child.otherSymptoms}</td>
+                <td>
+                  <Link className="btn btn-info" to={`/children/edit/${child.samId}`}>Update</ Link>
+                </td>
               </tr>
             ))
           }

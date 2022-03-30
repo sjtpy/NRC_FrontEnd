@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import childService from "../services/child.service";
-import { useNavigate } from "react-router";
+import { useNavigate,useParams } from "react-router";
 import { Link } from "react-router-dom";
 const AddChild = () => {
     const [uhid, setUhid]=useState('');
@@ -21,6 +21,7 @@ const AddChild = () => {
     const [growthStatus, setGrowthStatus]=useState('');
     const [otherSymptoms, setOtherSymptoms]=useState('');
 
+    const {samId} = useParams();
 
     //react hook used to navigate back to child list 
     //page once form is submitted
@@ -32,10 +33,22 @@ const AddChild = () => {
         e.preventDefault();
         //this is because we dont want to reload the page after submitting form 
         
-        
-        const child = {uhid,rchId,name,age,dob,gender,address,contactNumber,relationshipDetails,caste,religion,bpl,height,weight,muac,growthStatus,otherSymptoms};
-        console.log('child is',JSON.stringify(child, null, 4));
-        childService.create(child)
+        //samId is getting passed from useParams() hook
+        const child = {samId,uhid,rchId,name,age,dob,gender,address,contactNumber,relationshipDetails,caste,religion,bpl,height,weight,muac,growthStatus,otherSymptoms};
+    
+        if(samId){
+            //update row
+            childService.update(child)
+            .then(response => {
+                console.log('Child data updated',response.data);
+                navigate('/');
+            })
+            .catch(error => {
+                console.log('Something went wrong',error);
+            })
+        }else {
+            //create new row
+            childService.create(child)
             .then(response => {
                 console.log('Child data added successfully', response.data);
                 navigate('/');
@@ -44,8 +57,38 @@ const AddChild = () => {
             .catch(error =>{
                 console.log('Something rr went wrong',  error);
             });
+        }
     }
     
+
+    //useEffect to populate the form when click on update
+    useEffect(() =>{
+        if(samId){
+            childService.get(samId)
+                .then(child =>{
+                    setUhid(child.data.uhid);
+                    setRchid(child.data.rchId);
+                    setName(child.data.name);
+                    setAge(child.data.age);
+                    setDob(child.data.dob);
+                    setGender(child.data.gender);
+                    setAddress(child.data.address);
+                    setContact(child.data.contactNumber);
+                    setRelationshipDetails(child.data.relationshipDetails);
+                    setCaste(child.data.caste);
+                    setReligion(child.data.religion);
+                    setBpl(child.data.bpl);
+                    setHeight(child.data.height);
+                    setWeight(child.data.weight);
+                    setMuac(child.data.muac);
+                    setGrowthStatus(child.data.growthStatus);
+                    setOtherSymptoms(child.data.otherSymptoms);
+                })
+                .catch(error=>{
+                    console.log('Something went wrong', error); 
+                })
+        }
+    },[]);
 
     return (  
         <div className="container">
