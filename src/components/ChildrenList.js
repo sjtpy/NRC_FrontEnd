@@ -34,6 +34,16 @@ const ChildrenList = () => {
       })
   }
 
+  const handleDischarge = id => {
+      childService.discharge()
+      .then(response => {
+        console.log('Child Discharged Successfully', response.data);
+      })
+      .catch(error=> {
+        console.log('Something went wrong',error);
+      })
+
+  }
   return ( 
       <div className="container">
         <h3>List of Admitted Children</h3>
@@ -90,6 +100,7 @@ const ChildrenList = () => {
                 <td>
                   <Link className="btn btn-info" to={`/children/edit/${child.samId}`}>Update</ Link>
                   <button className="btn btn-danger mu-2 " onClick={(e)=>(handleDelete(child.samId))}>Delete</button>
+                  <Link className="btn btn-info " onClick={(e)=>(handleDischarge(child.samId))} to={`/children/discharge/${child.samId}`}>Discharge</Link>
                 </td>
               </tr>
             ))

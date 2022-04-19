@@ -3,6 +3,7 @@ import ChildrenList from "./components/ChildrenList";
 import NotFound from "./components/NotFound";
 import AddChild from "./components/AddChild";
 import LogInPage from "./components/LogInPage";
+import Discharge from "./components/Discharge";
 
 function App(){
   return (
@@ -14,6 +15,7 @@ function App(){
           <Route path="*" element={<NotFound/>}/>
           <Route path="/children/edit/:samId" element={<AddChild/>}/>
           <Route path="/add" element={<AddChild/>}/>
+          <Route path="/children/discharge/:samId" element={<Discharge/>}/>
           
         </Routes>
       </div>
