@@ -45,11 +45,13 @@ const ChildrenList = () => {
 
   }
   return ( 
-      <div className="container">
+      <div>
         <h3>List of Admitted Children</h3>
         <hr/>
         <div>
           <Link to="/add" className="btn btn-primary mb-2">Add Child</Link>
+          <Link to="/children/discharged" className="btn btn-primary mb-2">View discharged Patients</Link>
+          
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
             <tr>
@@ -99,7 +101,7 @@ const ChildrenList = () => {
                 <td>{child.otherSymptoms}</td>
                 <td>
                   <Link className="btn btn-info" to={`/children/edit/${child.samId}`}>Update</ Link>
-                  <button className="btn btn-danger mu-2 " onClick={(e)=>(handleDelete(child.samId))}>Delete</button>
+                  
                   <Link className="btn btn-info " onClick={(e)=>(handleDischarge(child.samId))} to={`/children/discharge/${child.samId}`}>Discharge</Link>
                 </td>
               </tr>

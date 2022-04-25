@@ -101,7 +101,7 @@ const AddChild = () => {
                     <input type="text" className="form-control col-4" id="uhid" value={uhid} onChange={(e)=>setUhid(e.target.value)} placeholder="Enter UhId"/>
                 </div>
                
-                <div className="form-group" padding-top-2>
+                <div className="form-group">
                     <input type="text" className="form-control col-4" id="rchId" value={rchId} onChange={(e)=>setRchid(e.target.value)} placeholder="Enter RchId"/>
                 </div>
 

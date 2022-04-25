@@ -4,10 +4,12 @@ import NotFound from "./components/NotFound";
 import AddChild from "./components/AddChild";
 import LogInPage from "./components/LogInPage";
 import Discharge from "./components/Discharge";
+import DischargedList from "./components/DischargedList";
 
 function App(){
   return (
     <BrowserRouter>
+     
       <div>
         <Routes>
           <Route path="/" element={<ChildrenList/>}/>
@@ -16,6 +18,7 @@ function App(){
           <Route path="/children/edit/:samId" element={<AddChild/>}/>
           <Route path="/add" element={<AddChild/>}/>
           <Route path="/children/discharge/:samId" element={<Discharge/>}/>
+          <Route path="/children/discharged" element={<DischargedList/>}/>
           
         </Routes>
       </div>
@@ -24,3 +27,4 @@ function App(){
 }
 
 export default App;
+
