@@ -6,18 +6,20 @@ import SearchLogo from '../icons8-search.svg';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router";
 
-const ChildrenList = () => {
-  const {samId} = useParams();
+const SearchResult = () => {
+  
   const [children, setChildren] =  useState([]);
 
+  
   useEffect(() =>{
     init();
    
   }, [])
 
-  
-  const init = () => {
-    childService.getAll()
+  const {samId} = useParams();
+  const init = data => {
+ 
+    childService.get(samId)
     .then(response => {
       console.log('Printing children data',response.data);
       setChildren(response.data);
@@ -42,21 +44,18 @@ const ChildrenList = () => {
 
   const handleSearch = id => {
     var input = document.getElementById("searchInput").value;
-    //console.log('clicked',parseInt(input));
+    //console.log('CLicked clicked',parseInt(input));
     navigate('/children/search/'+parseInt(input));
   }
 
 
   return ( 
       <div>
-        <h3>List of Admitted Children</h3>
+        <h3>Search Results</h3>
         <hr/>
         <div>
-          <Link to="/add" className="btn btn-primary mb-2">Add Child</Link>
-          <Link to="/children/discharged" className="btn btn-primary mb-2">View discharged Patients</Link>
-          
             <input type="text" placeholder="Search Patients" id="searchInput" onKeyPress={e => {if (e.key === 'Enter') {handleSearch(e)}}} ></input>
-                  
+                  <h1>sam id is {samId}</h1>
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
             <tr>
@@ -84,7 +83,11 @@ const ChildrenList = () => {
             </thead>
             <tbody>
           {
-            children.map(child => (
+              //map works only on arrays, so if only one record is the search result, need to 
+              //enclose in array.
+              //If multiple records, no need to enclose in array, like in childrenList
+              
+            [children].map(child => (
               <tr key={child.samId}>
                 <td>{child.samId}</td>
                 <td>{child.uhid}</td>
@@ -119,4 +122,4 @@ const ChildrenList = () => {
    );
 }
        
-export default ChildrenList;
+export default SearchResult;

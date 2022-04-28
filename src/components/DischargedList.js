@@ -3,6 +3,8 @@ import childService from "../services/child.service";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
+
+
 const DischargedList = () => {
 
   const [discharged, setDischarged] =  useState([]);
@@ -38,7 +40,6 @@ const DischargedList = () => {
             <td>DISCHARGE ID</td>
             <td>DISCHARGED AT</td>
             <td>WEIGHT</td>
-         
             <td>OUTCOME</td>
             <td>TREATMENT PROTOCOL</td>
 

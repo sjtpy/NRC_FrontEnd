@@ -29,7 +29,6 @@ const AddChild = () => {
     //page once form is submitted
     const navigate = useNavigate();
     
-
     
     const saveChild = (e) => {
         e.preventDefault();

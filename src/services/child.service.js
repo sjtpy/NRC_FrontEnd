@@ -5,6 +5,7 @@ const getAll = () => {
     return httpClient.get('/api/v1/children');
 }
 
+
 const getAllDischarged = () => {
     return httpClient.get('/api/v1/dischargedList');
 }
