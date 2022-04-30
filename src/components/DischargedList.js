@@ -32,8 +32,6 @@ const DischargedList = () => {
         <h3>List of Recently Discharged Children</h3>
         <hr/>
         <div>
-
-          
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
             <tr>

@@ -172,7 +172,7 @@ const AddChild = () => {
 
             </form>
             <hr/>
-            <Link to="/">Back to list</Link>
+            <Link to="/children">Back to list</Link>
         </div>
     );
 }

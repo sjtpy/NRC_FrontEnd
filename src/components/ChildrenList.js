@@ -27,7 +27,7 @@ const ChildrenList = () => {
     })
   }
 
-
+  
   const handleDischarge = id => {
       childService.discharge()
       .then(response => {

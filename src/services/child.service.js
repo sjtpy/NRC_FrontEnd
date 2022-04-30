@@ -2,15 +2,15 @@ import httpClient from '../http-common';
 import axios from 'axios';
 
 const getAll = () => {
-    return httpClient.get('/api/v1/children');
+    return httpClient.get('/children');
 }
 
 
 const getAllDischarged = () => {
-    return httpClient.get('/api/v1/dischargedList');
+    return httpClient.get('dischargedList');
 }
 const create = (data) => {
-    return httpClient.post("/api/v1/children", data, {
+    return httpClient.post("children", data, {
         headers: {
             'Content-Type': 'application/json',
         }
@@ -18,12 +18,12 @@ const create = (data) => {
 }
 
 const get = samId => {
-    return httpClient.get(`/api/v1/children/${samId}`);
+    return httpClient.get(`children/${samId}`);
 
 }
 
 const update = (data) => {
-    return httpClient.put('/api/v1/children',data, {
+    return httpClient.put('children',data, {
         headers: {
             'Content-Type': 'application/json',
         }
@@ -65,7 +65,7 @@ const discharge = (data) => {
     // console.log(error);
     // });
 
-    return httpClient.post("/api/v1/discharge", data, {
+    return httpClient.post("discharge", data, {
         headers: {
             'Content-Type': 'application/json',
         }
@@ -75,7 +75,7 @@ const discharge = (data) => {
 
 
 const remove = samId => {
-    return httpClient.delete(`/api/v1/children/${samId}`);
+    return httpClient.delete(`children/${samId}`);
 }
 //makes http call to rest api endpoint in springboot 
 
