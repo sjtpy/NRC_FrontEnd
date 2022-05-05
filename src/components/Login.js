@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 //import { Redirect } from 'react-router';
 import '../login.css';
-
+import Dashboard from "./Dashboard";
 
 
 
@@ -40,16 +40,14 @@ class Login extends Component {
           "Access-Control-Allow-Origin": "*"
       };
 
-
-      
-      
       axios.post('http://localhost:8080/login', this.state, { headers })
       .then(response => 
         {
             
-            this.setState({isLoggedIn : true});
+            //this.setState({isLoggedIn : true});
             //setting the cookie here
-            //document.cookie = "patient_cookie=" + response.data;
+            console.log(response.data);
+            document.cookie = "patient_cookie=" + response.data;
             console.log("Cookie set");
             this.refreshPage()
             this.setState({isLoggedIn: true})
@@ -113,7 +111,7 @@ class Login extends Component {
       );
     }
     else{
-      return <h1>hello</h1>;
+      return <Dashboard/>;
     }
 
   }

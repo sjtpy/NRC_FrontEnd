@@ -7,16 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router";
 
 const SearchResult = () => {
+  const {samId} = useParams();
+
   
   const [children, setChildren] =  useState([]);
 
   
   useEffect(() =>{
-    init();
+      init();
    
-  }, [])
+  }, [samId])
 
-  const {samId} = useParams();
   const init = data => {
  
     childService.get(samId)
@@ -44,7 +45,7 @@ const SearchResult = () => {
 
   const handleSearch = id => {
     var input = document.getElementById("searchInput").value;
-    //console.log('CLicked clicked',parseInt(input));
+    console.log('CLicked clicked',parseInt(input));
     navigate('/children/search/'+parseInt(input));
   }
 
@@ -55,7 +56,6 @@ const SearchResult = () => {
         <hr/>
         <div>
             <input type="text" placeholder="Search Patients" id="searchInput" onKeyPress={e => {if (e.key === 'Enter') {handleSearch(e)}}} ></input>
-                  <h1>sam id is {samId}</h1>
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
             <tr>
@@ -86,7 +86,7 @@ const SearchResult = () => {
               //map works only on arrays, so if only one record is the search result, need to 
               //enclose in array.
               //If multiple records, no need to enclose in array, like in childrenList
-              
+                 
             [children].map(child => (
               <tr key={child.samId}>
                 <td>{child.samId}</td>

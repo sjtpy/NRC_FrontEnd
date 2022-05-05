@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import childService from "../services/child.service";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
+import { useNavigate,useParams } from "react-router";
 import SearchLogo from '../icons8-search.svg';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from "react-router";
 
+
+import {Container} from 'react-bootstrap';
+import Login from './Login';
+import '../styles.css'
+import  Redirect  from 'react-router';
 const ChildrenList = () => {
+  
   const {samId} = useParams();
   const [children, setChildren] =  useState([]);
 
@@ -15,11 +20,13 @@ const ChildrenList = () => {
    
   }, [])
 
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
   
   const init = () => {
     childService.getAll()
     .then(response => {
       console.log('Printing children data',response.data);
+      setIsLoggedIn(true);
       setChildren(response.data);
     })
     .catch(error => {
@@ -42,13 +49,17 @@ const ChildrenList = () => {
 
   const handleSearch = id => {
     var input = document.getElementById("searchInput").value;
-    //console.log('clicked',parseInt(input));
+    console.log('clicked',parseInt(input));
+
     navigate('/children/search/'+parseInt(input));
   }
 
 
+  if(isLoggedIn){
   return ( 
-      <div>
+
+      <Container style={{"margin-left": "0"}}>
+      <div class="" > 
         <h3>List of Admitted Children</h3>
         <hr/>
         <div>
@@ -116,7 +127,15 @@ const ChildrenList = () => {
           </table>
         </div>
       </div>
-   );
+      </Container>
+      
+   )    
+  }
+   else{
+    return <Login/>
+    
+    // return <Redirect to = {{ pathname: "/login" }} />;
+   }
 }
        
 export default ChildrenList;

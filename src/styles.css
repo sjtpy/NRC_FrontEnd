@@ -45,6 +45,7 @@ input[type="submit"]:hover {
 
 .list-container {
   display: flex;
+
 }
 
 .error {
@@ -62,4 +63,35 @@ input[type="submit"]:hover {
   flex-direction: column;
   gap: 8px;
   margin: 10px;
+}
+
+.childrenlist {
+  align-items: center;
+  justify-content: center;
+  margin: 10px 20% 0;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+#cards{
+  align-items: center;
+  justify-content: center;
+  margin: 10px 20% 0;
+}
+
+table td {
+  width: auto !important;
+}
+
+.card {
+  width: 14rem;
+  margin: 10px 0px;
+}
+
+.Link{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
