@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import CreateFollowUp from './components/CreateFollowUp'
+import ViewFollowups from "./components/ViewFollowups";
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App(){
   return (
@@ -26,6 +27,7 @@ function App(){
           <Route path="/children/discharged" element={<DischargedList/>}/>
           <Route path="children/search/:samId" element={<SearchResult/>}></Route>
           <Route path="/children/createfollowup" element={<CreateFollowUp/>}/>
+          <Route path="/children/viewfollowups" element={<ViewFollowups/>}/>
           
         </Routes>
       </div>

@@ -11,16 +11,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateFollowUp = () => {
  
-    const [height, setHeight]=useState('');
-    const [weight, setWeight]=useState('');
-    const [muac, setMuac] = useState();
-    const [growthStatus, setGrowthStatus]=useState('');
-    const [symptoms, setSymptoms]=useState('');
+  
     const [createdAt, setCreatedAt]=useState('');
-    const [followupDate, setFollowupDate]=useState('');
+    const [followup1Date, setFollowup1Date]=useState('');
+    const [followup2Date, setFollowup2Date]=useState('');
+    const [followup3Date, setFollowup3Date]=useState('');
+    const [followup4Date, setFollowup4Date]=useState('');
     const [isAttempted, setIsAttempted]=useState('');
-    const [attemptedDate, setAttemptedDate]=useState('');
-    
+   
     //react hook used to navigate back to child list 
     //page once form is submitted
     const navigate = useNavigate();
@@ -28,12 +26,55 @@ const CreateFollowUp = () => {
     const saveFollowup = (e) => {
         e.preventDefault();
         //this is because we dont want to reload the page after submitting form 
-        
+        var fal = false;
         //samId is getting passed from useParams() hook
-        const followup = {height,weight,muac,growthStatus,symptoms,createdAt,followupDate,isAttempted,attemptedDate};
+        const followup1 = {createdAt,followup1Date,fal,};
+        const followup2 = {createdAt,followup2Date,fal,};
+        const followup3 = {createdAt,followup3Date,fal};
+        const followup4 = {createdAt,followup4Date,fal};
     
-        console.log('enter',followup);
-        childService.createfollowup(followup)
+        
+        childService.createfollowup(followup1)
+        .then(response => {
+        
+        console.log('Child data added successfully', response.data);
+    
+        })
+        .catch(error =>{
+        console.log('Something rr went wrong',  error);
+        });
+
+        
+        
+        childService.createfollowup(followup2)
+        .then(response => {
+        
+        console.log('Child data added successfully', response.data);
+        
+        })
+        .catch(error =>{
+        console.log('Something rr went wrong',  error);
+        });
+
+                
+        
+        
+        
+        childService.createfollowup(followup3)
+        .then(response => {
+        
+        console.log('Child data added successfully', response.data);
+        
+        })
+        .catch(error =>{
+        console.log('Something rr went wrong',  error);
+        });
+
+                
+        
+        
+        
+        childService.createfollowup(followup4)
         .then(response => {
         
         console.log('Child data added successfully', response.data);
@@ -51,53 +92,37 @@ const CreateFollowUp = () => {
             <hr/>
             <Container>
             <form>
-            <Row>
             
-                 <Col>
-                  <label>Height</label> 
-                    <input type="text" className="form-control col-4" id="height" value={height} onChange={(e)=>setHeight(e.target.value)} placeholder="Enter Height(cm)"/>
-                
-                </Col>
-                 <Col>
-             <label> Weight</label> 
-                    <input type="text" className="form-control col-4" id="weight" value={weight} onChange={(e)=>setWeight(e.target.value)} placeholder="Enter Weight(Kg)"/>
-             
-                </Col>
-                 <Col>
-                <label>Enter MUAC</label> 
-                    <input type="text" className="form-control col-4" id="muac" value={muac} onChange={(e)=>setMuac(e.target.value)} placeholder="Enter Muac"/>
-               
-                </Col>
-                 <Col>
-                <label>Growth Status</label> 
-                    <input type="text" className="form-control col-4" id="growthStatus" value={growthStatus} onChange={(e)=>setGrowthStatus(e.target.value)} placeholder="Enter Growth Status"/>
-               
-                </Col>
+            <Row>
                 <Col>
-                    <label>Symptoms (if any)</label> 
-                    <input type="text" className="form-control col-4" id="symptoms" value={symptoms} onChange={(e)=>setSymptoms(e.target.value)} placeholder="Enter Symptoms"/>
-             
+                <label>Follow Up created at: </label> 
+                    <DatePicker placeholderText="DD/MM/YY" selected={createdAt} onChange={date => setCreatedAt(date)} id="createdAt" value={setCreatedAt}/>
                 </Col>
             </Row>
             <Row>
+                <Row>
                 <Col>
-                <label>Follow Up created at</label> 
-                    <DatePicker placeholderText="DD/MM/YY" selected={createdAt} onChange={date => setCreatedAt(date)} id="createdAt" value={createdAt}/>
-                </Col>
-                <Col>
-                <label>Follow Up Date</label> 
-                    <DatePicker placeholderText="DD/MM/YY" selected={followupDate} onChange={date => setFollowupDate(date)} id="followupDate" value={followupDate}/>
-                </Col>
-                <Col>
-                    <label>Attempted</label> 
-                    <input type="text" className="form-control col-4" id="isAttempted" value={isAttempted} onChange={(e)=>setIsAttempted(e.target.value)} placeholder="y/n"/>
+                <label>Follow Up 1 </label> 
+                    <DatePicker placeholderText="DD/MM/YY" selected={followup1Date} onChange={date => setFollowup1Date(date)} id="createdAt" value={followup1Date}/>
                 </Col>
                   <Col>
-                    <label>Attempted On</label> 
-                    <DatePicker placeholderText="DD/MM/YY" selected={attemptedDate} onChange={date => setAttemptedDate(date)} id="attemptedDate" value={attemptedDate}/>
+                <label>Follow Up 2</label> 
+                    <DatePicker placeholderText="DD/MM/YY" selected={followup2Date} onChange={date => setFollowup2Date(date)} id="createdAt" value={followup2Date}/>
+                </Col>
+                </Row>
+                  
+                
+             <Row>
+                <Col>
+                <label>Follow Up 3</label> 
+                    <DatePicker placeholderText="DD/MM/YY" selected={followup3Date} onChange={date => setFollowup3Date(date)} id="createdAt" value={followup3Date}/>
                 </Col>
                 
-
+              <Col>
+                <label>Follow Up 4</label> 
+                    <DatePicker placeholderText="DD/MM/YY" selected={followup4Date} onChange={date => setFollowup4Date(date)} id="createdAt" value={followup4Date}/>
+                </Col>
+            </Row>
             </Row>
 
    

@@ -7,8 +7,8 @@ const Navbar = () => {
   
   <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
     <ReactBootStrap.Nav className="me-auto">
-      <ReactBootStrap.Nav.Link href="#features">Something</ReactBootStrap.Nav.Link>
-      <ReactBootStrap.Nav.Link href="#pricing">Somethingelse</ReactBootStrap.Nav.Link>
+      {/* <ReactBootStrap.Nav.Link href="#features">Something</ReactBootStrap.Nav.Link>
+      <ReactBootStrap.Nav.Link href="#pricing">Somethingelse</ReactBootStrap.Nav.Link> */}
    
     </ReactBootStrap.Nav>
     <ReactBootStrap.Nav>

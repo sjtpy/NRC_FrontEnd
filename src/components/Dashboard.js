@@ -3,15 +3,21 @@ import childService from "../services/child.service";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles.css"
-
+import { useNavigate,useParams } from "react-router";
 const Dashboard = () => {
+       const handleSearch = id => {
+    var input = document.getElementById("searchInput").value;
+    console.log('clicked',parseInt(input));
+
+    navigate('/children/search/'+parseInt(input));
+  }
     const [len, setLen] =  useState([]);
     const [dislen,setDislen] = useState([]);
      useEffect(() =>{
       init();
    
   }, [])
-
+    const navigate = useNavigate();
     const init = ()=> {
     childService.getAll()
     .then(response => {
@@ -32,7 +38,8 @@ const Dashboard = () => {
     .catch(error => {
       console.log('Something went wrong',error);
     })
-
+    
+ 
   }
 
  
@@ -42,7 +49,7 @@ const Dashboard = () => {
             <Row md={3}>
                 <Col >
                     <Card >
-                    <Card.Img variant="top" src="../bed.png" />
+                    <Card.Img variant="top" src="../medical-record.png" />
                     <Card.Body>
                         {/* <Card.Title>Card Title</Card.Title> */}
                         <Card.Text>
@@ -70,9 +77,9 @@ const Dashboard = () => {
                     <Card.Img variant="top" src="../bed.png" />
                     <Card.Body>
                         <Card.Text>
-                        Some quick example text 
+                        Admit new Patient
                         </Card.Text>
-                        <Button variant="primary">Button</Button>
+                        <Link to="/add" className="btn btn-primary mb-2">Add</Link>
                     </Card.Body>
                     </Card>
                 </Col>
@@ -80,37 +87,17 @@ const Dashboard = () => {
            <Row md={3}>
                 <Col >
                     <Card >
-                    <Card.Img variant="top" src="../bed.png" />
+                    <Card.Img variant="top" src="../health.png" />
                     <Card.Body>
                         <Card.Text>
-                        Some quick example text 
+                        Search Admitted Patient 
                         </Card.Text>
-                        <Button variant="primary">Button</Button>
+                        <input type="text" placeholder="samId" id="searchInput" onKeyPress={e => {if (e.key === 'Enter') {handleSearch(e)}}} ></input>
                     </Card.Body>
                     </Card>
                 </Col>
-                <Col >
-                    <Card >
-                    <Card.Img variant="top" src="../bed.png" />
-                    <Card.Body>
-                        <Card.Text>
-                        Some quick example text 
-                        </Card.Text>
-                        <Button variant="primary">Button</Button>
-                    </Card.Body>
-                    </Card>
-                </Col>
-                <Col >
-                    <Card >
-                    <Card.Img variant="top" src="../bed.png" />
-                    <Card.Body>
-                        <Card.Text>
-                        Some quick example text 
-                        </Card.Text>
-                        <Button variant="primary">Button</Button>
-                    </Card.Body>
-                    </Card>
-                </Col>
+            
+           
             </Row>
 </Container>
    

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 
 
-const DischargedList = () => {
+const ViewFollowups = () => {
 
-  const [discharged, setDischarged] =  useState([]);
+  const [followups, setFollowups] =  useState([]);
 
   useEffect(() =>{
     init();
@@ -19,42 +19,44 @@ const DischargedList = () => {
     childService.getAllDischarged()
     .then(response => {
       console.log('Printing children data',response.data);
-      setDischarged(response.data);
-      console.log(response.data);
+      setFollowups(response.data);
     })
     .catch(error => {
       console.log('Something went wrong',error);
     })
   }
 
+     const notify = (e) =>{
+       e.preventDefault();
+
+       
+    }
+
 
   return ( 
       <div>
-        <h3>List of Recently Discharged Children</h3>
+        <h3>List of Follow Ups</h3>
         <hr/>
         <div>
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
             <tr>
-            <td>DISCHARGE ID</td>
-            <td>DISCHARGED AT</td>
-            <td>WEIGHT</td>
-            <td>OUTCOME</td>
-            <td>TREATMENT PROTOCOL</td>
+            <td>Follow Up ID</td>
+            <td>Follow up date</td>
+            <td>Status</td>
+            
 
           </tr>
             </thead>
             <tbody>
           {
-            discharged.map(d => (
-              <tr key={d.dsId}>
-                <td>{d.dsId}</td>
-                <td>{d.dischargeAt.toString()}</td>
-                <td>{d.weight}</td>
-                <td>{d.outcome}</td>
-                <td>{d.treatmentProtocol}</td>
-                <td>
-                  <Link className="btn btn-info" to={"/children/viewfollowups"}>View Follow Ups</ Link>  
+            followups.map(d => (
+              <tr key={d.followUpId}>
+                <td>{d.followUpId}</td>
+                <td>{d.followupDate}</td>
+                <td>{d.isAttempted}</td>
+  <td>
+                  <Link className="btn btn-info" onClick={(e) => notify(e)}>Notifiy AWW</ Link>  
                 </td>
               </tr>
             ))
@@ -66,4 +68,4 @@ const DischargedList = () => {
    );
 }
        
-export default DischargedList;
+export default ViewFollowups;

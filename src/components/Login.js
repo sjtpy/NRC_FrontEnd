@@ -40,18 +40,19 @@ class Login extends Component {
           "Access-Control-Allow-Origin": "*"
       };
 
-      axios.post('http://localhost:8080/login', this.state, { headers })
+
+      axios.post('http://localhost:8080/api/v1/authenticate', this.state, { headers })
+      // axios.post('http://cb83-119-161-98-68.ngrok.io/api/v1/authenticate', this.state, { headers })
       .then(response => 
         {
             
             //this.setState({isLoggedIn : true});
             //setting the cookie here
             console.log(response.data);
-            document.cookie = "patient_cookie=" + response.data;
+            document.cookie = "patient_cookie=" + response.data['jwt'];
             console.log("Cookie set");
             this.refreshPage()
             this.setState({isLoggedIn: true})
-            
 
         })
         .catch(error => {
