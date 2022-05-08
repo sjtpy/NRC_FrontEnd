@@ -92,7 +92,7 @@ const Dashboard = () => {
                         <Card.Text>
                         Search Admitted Patient 
                         </Card.Text>
-                        <input type="text" placeholder="samId" id="searchInput" onKeyPress={e => {if (e.key === 'Enter') {handleSearch(e)}}} ></input>
+                        <input type="text" placeholder="samId" id="searchInput" onKeyPress={e => {if (e.key === 'Enter') {handleSearch(e)}}} style={{'marginLeft': 0}}></input>
                     </Card.Body>
                     </Card>
                 </Col>
